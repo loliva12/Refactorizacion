@@ -1,0 +1,6 @@
+El diseño permite registrar las fechas previstas para los distintos
+equipos del campeonato.
+Si la fecha ya fue definida también se debe poder registrar los
+goles y el mejor jugador del partido.
+Finalmente, debe poder visualizarse toda la información registrada
+al momento.

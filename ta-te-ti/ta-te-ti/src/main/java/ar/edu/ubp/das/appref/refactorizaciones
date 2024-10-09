@@ -1,0 +1,26 @@
+CLASE app:
+
+BAD SMELL: Codigo duplicado
+REFACTORIZACIONES APLICADAS:
+* Extract Class: Se creó una clase Tablero para manejar las operaciones relacionadas con el tablero, eliminando duplicación de código.
+* Extract Method: Se extrajeron los métodos imprimir y inicializar de la clase App a la clase Tablero, ya que estos procedimientos se repetían en varias partes del código.
+* Descomposicion condicional: Se reemplazaron los bloques if-else que determinaban el jugador actual por un operador ternario, simplificando la lógica de asignación.
+
+BAD SMELL: Large method
+REFACTORIZACIONES APLICADAS:
+* Move Method: Las funciones gano y termino fueron movidas de la clase App a la clase Tablero, mejorando la cohesión al concentrar la lógica del tablero en una sola clase.
+* Extract Class: Se creó la clase Jugador para encapsular la lógica relacionada con los jugadores (nombre y símbolo).
+* Extract Method: Se implementaron los métodos iniciarJuego para la lógica principal del juego, eliminando anidamientos de condiciones y separando responsabilidades.
+También se creó el método obtenerPosicionValida para ingresar y validar las posiciones de manera más estructurada.
+
+BAD SMELL: Switch statement
+REFACTORIZACIONES APLICADAS:
+* Extract Method: Se extrajo la función verificarGanador para encapsular la lógica de verificación de ganador, mejorando la legibilidad y manteniendo el código más modular.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CLASE tablero:
+BAD SMELL: Envidia de caracteristicas
+REFACTORIZACIONES APLICADAS:
+* Extract Method: Se creó el método esPosicionValida para verificar si una posición es válida, delegando esta responsabilidad al Tablero, donde pertenece.
+* Move Method: El método esGanador se movió de la clase App a la clase Tablero, ya que la verificación de la victoria depende del estado del tablero y no de la lógica de la aplicación principal.

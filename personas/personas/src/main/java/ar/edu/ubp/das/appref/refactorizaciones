@@ -1,0 +1,50 @@
+CLASE: persona
+BAD SMELL: Long class
+REFACTORIZACIONES APLICADAS:
+* Push down field: se movio los atributos "nroLegAlumno" a la clase Alumno y "nroLegDocente" a la clase Docente, a la super clase Persona
+
+BAD SMELL: Codigo muerto
+REFACTORIZACIONES APLICADAS:
+* Revome field: se elimina el atriburo "nroPersona" porque es redundante al tener el documento de la persona ya lo vuelve unico.
+* Remove method: se elimina los getter and setters sin usar.
+
+BAD SMELL: Long parameter list
+REFACTORIZACIONES APLICADAS:
+* Remove field: se elimina del contructor de la clase la variable "nroLegPersonal" que estaba declarada pero no usada
+
+--------------------------------------
+
+CLASE: Docente
+BAD SMELL: Codigo muerto
+REFACTORIZACIONES APLICADAS:
+* Remove method: se eliminan los getters and setters que no se usan.
+
+BAD SMELL: Long parameter lis
+REFACTORIZACIONES APLICADAS:
+* Remove method: se elimina el contructor y se acceden a los atributos mediante los metodos accesores
+
+--------------------------------------
+
+CLASE: Alumno
+BAD SMELL: Refused Bequest
+REFACTORIZACIONES APLICADAS:
+* Se cambio la herencia de la clase, en vez de heredar de Docente, ahora hereda de Persona
+* Se creo un atrbuto tipo Carrera, porque un alumno tieene que estar asociado a una carrera
+
+--------------------------------------
+
+CLASE: TipoDocumento
+BAD SMELL: Primitive obsession
+REFACTORIZACIONES APLICADAS:
+* Replace Primitive with Object: se movieron los atributos nroDocumento y codTipoDocumento a la clase Persona;
+y se elimina dicha clase ya que no tiene suficiente comportamiento específico para justificar su existencia como clase independiente.
+* Rename atribute: se le cambio el nombre a la variable codTipoDocumento por tipoDocumento.
+
+--------------------------------------
+
+CLASE: Cargo
+BAD SMELL: Primitive obsession
+REFACTORIZACIONES APLICADAS:
+* Replace Primitive with Object: se movio el atributo nomCargo a la clase Docente;
+y se elimina dicha clase ya que no tiene suficiente comportamiento específico para justificar su existencia como clase independiente.
+

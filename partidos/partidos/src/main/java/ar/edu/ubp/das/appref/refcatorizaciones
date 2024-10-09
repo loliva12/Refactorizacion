@@ -1,0 +1,16 @@
+Clase: Fechas
+Bad smell: Duplicated Code (Código duplicado)
+Refactorizaciones aplicadas:
+* Extract Method: los valores de local, visitante y fecha aparece varias veces en las funciones agregarPartido, informarGolesPartido, y elegirJugadorPartido,
+se extrae la lógica repetida en un método privado dentro de Fechas para evitar duplicación de código.
+
+Bad smell: Long Method (Método largo)
+refcatorizaciones aplicadas:
+* Extract Method: Se extrae la lógica de impresión de la funcion mostrarPartidos de cada Partido en un metodo llamado imprimirPartido
+
+---------------------------------------------
+
+Clase Jugador:
+bad smell: Primitive Obsession (Obsesión por tipos primitivos)
+refcatorizaciones aplicadas:
+* Introduce Parameter Object: se crea una clase NombreCompleto que agrupe apellido y nombre, encapsulando la lógica relacionada con el nombre completo.
