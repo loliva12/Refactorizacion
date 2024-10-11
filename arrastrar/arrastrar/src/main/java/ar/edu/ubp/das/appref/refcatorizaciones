@@ -1,0 +1,26 @@
+Clase ShapeItem:
+Bad Smell: Code duplicate
+Refactorizaciones aplicadas:
+* Extract Class: se dividio dicha clase en una clase abstracta "ShapeItemBase" y en dos subclases
+concretas que heredan de esta "RectangleItem" y "EllipseItem"
+
+----------------------------------------------------------
+
+Clase App:
+Bad Smell: Code duplicate
+Refactorizaciones aplicadas:
+* Replace Conditional with Polymorphism: se reeplazo el condicional que seleccionaba entre
+shape1 y shape2 utilizando polimorfismo, con las clases RectangleItem y EllipseItem que
+heredan de ShapeItemBase
+* Move Method: Se movio la lógica de pintar la figura y de determinar si el mouse estaba dentro
+ de la figura desde App a las subclases
+
+ Bad Smell: Feature Envy
+ Refactorizaciones aplicadas:
+ * Move Method: se movio la logica de actualización de la posición del shape a la clase ShapeItemBase y
+ delegar el movimiento dentro de la clase
+
+Bad Smell: Primitive Obsession:
+Refactorizaciones aplicadas:
+* Replace Data Value with Object: Se creo una clase Coordenada para almacenar las coordenadas prevX, prevY
+

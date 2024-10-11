@@ -7,10 +7,11 @@ import java.util.LinkedList;
 public class Fechas {
 
     private static Fechas instance;
-    private LinkedList<Partido> partidos;
+
+    LinkedList<Partido> partidos;
 
     public Fechas() {
-        this.partidos = new LinkedList<>();
+        this.partidos = new LinkedList<Partido>();
     }
 
     public static Fechas getInstance() {
@@ -20,68 +21,70 @@ public class Fechas {
         return instance;
     }
 
-    private Partido crearPartido(Date fecha, Equipo local, Equipo visitante) {
-        Partido p = new Partido();
-        p.setFecha(fecha);
-        p.setLocal(local);
-        p.setVisitante(visitante);
-        return p;
-    }
-
     public void agregarPartido(Date fecha, Equipo local, Equipo visitante) {
-        Partido p = crearPartido(fecha, local, visitante);
+        Partido p = new Partido();
+        p.visitante = visitante;
+        p.local = local;
+        p.fecha = fecha;
         this.partidos.add(p);
     }
 
     public void informarGolesPartido(Date fecha, Equipo local, Equipo visitante, int golesLocal, int golesVisitante) {
-        Partido p = crearPartido(fecha, local, visitante);
+        Partido p = new Partido();
+        p.local = local;
+        p.fecha = fecha;
+        p.visitante = visitante;
 
         for(Partido partido : this.partidos) {
             if(partido.compareTo(p) == 0) {
-                partido.getLocal().goles = golesLocal;
-                partido.setLocal(local);
+                partido.local.goles = golesLocal;
+                partido.local = local;
 
-                partido.getVisitante().goles = golesVisitante;
-                partido.setVisitante(visitante);
+                partido.visitante.goles = golesVisitante;
+                partido.visitante = visitante;
                 break;
             }
         }
     }
 
     public void elegirJugadorPartido(Date fecha, Equipo local, Equipo visitante, Jugador jugador) {
-        Partido p = crearPartido(fecha, local, visitante);
+        Partido p = new Partido();
+        p.fecha = fecha;
+        p.local = local;
+        p.visitante = visitante;
 
         for(Partido partido : this.partidos) {
             if(partido.compareTo(p) == 0) {
-                partido.setElegido(jugador);
+                partido.elegido = jugador;
                 break;
             }
         }
     }
 
-    private String imprimirPartido(Partido partido) {
+    public String mostrarPartidos() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder datos = new StringBuilder();
 
-        datos.append("*****************************************\n");
-        datos.append("Fecha: ").append(sdf.format(partido.getFecha())).append("\n");
-        datos.append("Local: ").append(partido.getLocal()).append("\n");
-        datos.append("Visitante: ").append(partido.getVisitante()).append("\n");
-        if(partido.getElegido() != null) {
-            datos.append("Jugador del partido: ").append(partido.getElegido()).append("\n");
-        }
-        datos.append("*****************************************\n");
-
-        return datos.toString();
-    }
-
-    public String mostrarPartidos() {
-        StringBuilder datos = new StringBuilder();
-
         for(Partido partido : this.partidos) {
-            datos.append(imprimirPartido(partido));
+            datos.append("*****************************************\n");
+            datos.append("Fecha: ");
+            datos.append(sdf.format(partido.fecha));
+            datos.append("\n");
+            datos.append("Local: ");
+            datos.append(partido.local);
+            datos.append("\n");
+            datos.append("Visitante: ");
+            datos.append(partido.visitante);
+            datos.append("\n");
+            if(partido.elegido != null) {
+                datos.append("Jugador del partido: ");
+                datos.append(partido.elegido);
+                datos.append("\n");
+            }
+            datos.append("*****************************************\n");
         }
-
         return datos.toString();
     }
+
 }
+

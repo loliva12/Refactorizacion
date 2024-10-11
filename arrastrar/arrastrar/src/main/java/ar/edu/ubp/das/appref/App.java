@@ -4,24 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.RectangularShape;
+//import java.awt.geom.RectangularShape;
 import java.util.Random;
 
 public class App extends Canvas implements MouseMotionListener {
-
-    private ShapeItem shape;
-    private ShapePainter shapePainter;
-    private boolean isMoving = false;
-    private int prevX;
-    private int prevY;
-
-    private Color c;
-    private Random random;
+    ShapeItemBase shape;
+    boolean isMoving = false;
+    Coordenada previousPoint;
+    Color c;
+    Random random;
 
     public App() {
         random = new Random();
-        shape = new ShapeItem();
-        shapePainter = new ShapePainter();
+        shape = random.nextInt(2) == 0 ? new RectangleItem() : new EllipseItem(); // Polimorfismo
 
         addMouseMotionListener(this);
 
@@ -39,28 +34,21 @@ public class App extends Canvas implements MouseMotionListener {
 
     @Override
     public void paint(Graphics g) {
-        c = new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
-        RectangularShape rs = getRandomShape(); // Usar el método extraído
-        shapePainter.paint(g, rs, c, shape.getX(), shape.getY(), shape.getWidth(), shape.getHeight());
+        c = getRandomColor();
+        shape.paint(g, c);
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (!isMoving) {
-            RectangularShape rs = getRandomShape(); // Usar el método extraído
+        Coordenada actualPoint = new Coordenada(e.getX(), e.getY());
 
-            if (shape.isInside(rs, e)) {
-                prevX = e.getX();
-                prevY = e.getY();
-                isMoving = true;
-            }
-        } else {
-            shape.setX((shape.getX() + e.getX()) - prevX);
-            shape.setY((shape.getY() + e.getY()) - prevY);
-
-            prevX = e.getX();
-            prevY = e.getY();
-
+        if (!isMoving && shape.isInside(e)) {
+            previousPoint = actualPoint;
+            isMoving = true;
+        } else if (isMoving) {
+            Coordenada diferencia = actualPoint.diferencia(previousPoint);
+            shape.moveShape(diferencia.getX(), diferencia.getY());
+            previousPoint = actualPoint;
             repaint();
         }
     }
@@ -70,12 +58,8 @@ public class App extends Canvas implements MouseMotionListener {
         isMoving = false;
     }
 
-    private RectangularShape getRandomShape() {
-        if (random.nextInt(256) % 2 == 0) {
-            return shape.getRectangleShape();
-        } else {
-            return shape.getEllipseShape();
-        }
+    private Color getRandomColor() {
+        return new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
     }
 
     public static void main(String[] args) {

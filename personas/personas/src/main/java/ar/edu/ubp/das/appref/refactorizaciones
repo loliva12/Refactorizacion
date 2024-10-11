@@ -28,7 +28,7 @@ REFACTORIZACIONES APLICADAS:
 CLASE: Alumno
 BAD SMELL: Refused Bequest
 REFACTORIZACIONES APLICADAS:
-* Se cambio la herencia de la clase, en vez de heredar de Docente, ahora hereda de Persona
+* Camnio de herencia: Se cambio la herencia de la clase, en vez de heredar de Docente, ahora hereda de Persona
 * Se creo un atrbuto tipo Carrera, porque un alumno tieene que estar asociado a una carrera
 
 --------------------------------------
