@@ -25,21 +25,22 @@ public class Run {
         Equipo I = new Equipo("Equipo I");
         Equipo J = new Equipo("Equipo J");
 
+        // Agregar partidos
         fechas.agregarPartido(fecha1, A, B);
         fechas.agregarPartido(fecha1, C, D);
-
-        fechas.informarGolesPartido(fecha1, A, B, 2, 3);
-        fechas.informarGolesPartido(fecha1, C, D, 1, 1);
-
         fechas.agregarPartido(fecha2, E, F);
         fechas.agregarPartido(fecha2, G, H);
         fechas.agregarPartido(fecha3, I, J);
 
+        // Informar goles usando el método de Fechas
+        fechas.informarGolesPartido(fecha1, A, B, 2, 3);
+        fechas.informarGolesPartido(fecha1, C, D, 1, 1);
+
+        // Elegir jugador del partido usando el método de Fechas
         fechas.elegirJugadorPartido(fecha1, A, B, new Jugador("PEPE", "GRILLO"));
         fechas.elegirJugadorPartido(fecha1, C, D, new Jugador("ATAHUALPA", "MAS"));
 
+        // Mostrar los partidos
         System.out.print(fechas.mostrarPartidos());
     }
-
 }
-

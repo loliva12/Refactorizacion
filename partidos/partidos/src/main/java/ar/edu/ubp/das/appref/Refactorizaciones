@@ -1,0 +1,22 @@
+Clase Fechas:
+Bad Smell: Middleman
+Refcatorizaciones aplicadas:
+* Remove Middleman:Se eliminó la responsabilidad de la clase Fechas de manejar los
+detalles del partido (goles y jugador elegido), y se delegaron esas responsabilidades
+directamente a la clase Partido
+* Move Method: Se movieron los métodos relacionados con la actualización de goles y la
+selección del jugador del partido desde Fechas hacia Partido
+
+Bad Smell: Feature Envy
+Refactorizaciones aplicadas:
+* Move Method: se movieron los metodos informarGolesPartido y elegirJugadorPartido a la clase
+Partido
+* Rename method: se cambiaron los nombres de los metodos a informarGoles
+y elegirJugadorDelPartido
+
+-----------------------------------------------
+
+Clase Partido:
+Bad Smell: Data Class
+Refactorizaciones aplicadas:
+* Encapsulate Field: se agregaron los modificadores y los metodos de acceso

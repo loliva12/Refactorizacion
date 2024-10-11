@@ -3,7 +3,7 @@ package ar.edu.ubp.das.appref;
 public class Equipo implements Comparable<Equipo> {
 
     private String nombre;
-    int goles;
+    private int goles;
 
     public Equipo(String nombre) {
         this.nombre = nombre;
@@ -12,6 +12,14 @@ public class Equipo implements Comparable<Equipo> {
 
     public String getNombre() {
         return this.nombre;
+    }
+
+    public int getGoles() {
+        return goles;
+    }
+
+    public void setGoles(int goles) {
+        this.goles = goles;
     }
 
     @Override
