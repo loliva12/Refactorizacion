@@ -1,0 +1,26 @@
+Clase: Producto
+Bad Smell: Data Class
+Refactorizaciones aplicadas:
+* Encapsulate Field: Se hicieron privados los atributos y se crearon métodos para acceder a ellos.
+* Add Method: Se añadió el método calcularTotal() para encapsular la
+lógica de cálculo del precio total de un producto.
+
+----------------------------------------
+
+Clase: Ventas
+Bad Smell: Switch Statements
+Refactorizaciones aplicadas:
+* Replace Conditional with Polymorphism: se creo una jerarquia de clases, una interfaz TipoVenta,
+y subclases de cada tipo de venta (VentaEnLinea, ventaMayorista, VentaMinorista)
+
+Bad Smell: codigo duplicado
+Refcatorizaciones aplicadas:
+* Extract Method: Se implementó el método getDescuento() y calcularEnvio() delegando la
+lógica a TipoVenta.
+
+---------------------------------------------
+
+ Clase: MisVentas
+ Bad Smell: Duplicated Code
+ Refactorizaciones aplicadas:
+ * Extract Method: Se extrajo la lógica de cálculo de descuento y costo de envío a la clase Venta, usando getDescuento() y calcularEnvio().
